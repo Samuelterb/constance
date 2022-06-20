@@ -1,0 +1,401 @@
+<?php
+//Lejend Ekpaton 
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PHP PRACTICE</title>
+
+    <!-- JAVASCRIPT FOR CLOCK -->
+        <script>
+            setInterval(function(){
+            var time= document.getElementById("time");
+            var date= new Date();
+            var mins= date.getMinutes();
+            var secs= date.getSeconds();
+            var hrs= date.getHours();
+            
+            time.innerHTML= hrs +" : " + mins +" : " + secs;
+            }, -1000)
+
+        </script>
+
+
+    <style>
+
+
+
+        @font-face { 
+            font-family: Magnet;
+            src: url(magnet.ttf);
+        }
+
+        @font-face { 
+            font-family: Digits;
+            src: url(talldark.ttf);
+        }
+
+
+        body {
+            margin-top: 100px;
+            background-color: silver;
+            font-size: 2em;
+        }
+
+        p {
+            color: white;
+            background: black; 
+            padding: 8px;
+            text-align: center;
+            
+        }
+        
+            
+
+       
+        #digits {
+            margin-left: -7px;
+        }
+        
+       
+        td{
+            border-radius: 4px;
+            
+            
+        }
+
+    
+        header {
+            top: 0;
+            background: #213;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-family: fantasy;
+            font-weight: 900;
+
+
+        }
+
+        #time {
+            color: black;
+            background: linear-gradient(black, grey, white, black), linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+            font-family: Digits;
+            font-size: 11pt;
+            font-weight: 100;
+            text-align: center;
+            position: relative;
+            top: -9px;
+            border: 1px solid grey;
+            border-radius: 2px;
+            padding: 5px;
+            margin: auto auto;
+            width: 40px;
+            height: 15px;
+            vertical-align: top;
+        }
+
+        .headline {
+            text-align: center;
+            font-family: Magnet;
+            font-size: .6em;
+           
+            color: white;
+            position: relative;
+            top: -4px;
+            width: 68%;
+            border-bottom: 2px dashed #010;
+            margin: auto auto;
+            /* text-decoration: overline wavy #122; */
+        }
+
+       
+        
+        input {
+            font-family: Courier;
+            font-size: .93em;
+            background-image: linear-gradient(#211a00, black);
+            color: white;
+            transition: all 1ms;
+            border: 2px outset black;
+            outline: 1px solid black;
+            width: 100%;
+            border-radius: 6px;
+            height: 40px;
+            border-left: thin solid white;
+            cursor: pointer;
+        }
+
+        .cmd{
+            background-image: linear-gradient(orange, red);
+            height: 40px;
+            width: 47px;
+        }
+
+        .equal {
+            height: 53px;
+            width: 47px;
+            background-image: linear-gradient(#112, green);
+            
+        }
+
+        input:active {
+            background-image: linear-gradient(black, black);
+            color: silver;
+            transform: scale(.971);
+            border: 1px inset black;
+        }
+
+
+        #container {
+            background: linear-gradient(#222222, black, black, grey, black 60%, gray, grey 20%, black);
+            padding: 20px;
+            width: 175px;
+            margin: auto auto;
+            border-radius: 8px 8px 21px 21px;
+            border-top: 2px dashed;
+            border-bottom: 3px dashed;
+            transform: skew(1deg,1deg); 
+            box-shadow: -6px 3px 1px #222;
+        }
+
+        #lcd {
+            font-family: Arial;
+            color: black;
+            background: #565;
+            padding: 10px;
+            position: relative;
+            left: -5px;
+            width: 95%;
+            border: 3px outset black;
+            border-top: 1px solid black;
+            border-radius: 0 0 12px 12px;
+            overflow: scroll;
+            
+        }
+
+        .shift {
+            position: absolute;
+            bottom: -80px;
+            left: 0;
+
+        }
+
+        input[type=button].shift:focus {
+            color: green;
+        }
+
+        #key2 {
+            color: rgb(247, 242, 0);
+            position: absolute;
+            right: 4px;
+            font-size: .23em;
+            z-index: 9;
+        }
+        
+        .contain {
+            top: -39px;
+            position: relative;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        KINGSAM
+        
+    </header>
+
+    
+
+
+<div id="container"> 
+
+<div id="time" >00:00:00 </div>
+
+<div class="headline" > KINGSAM</div>
+    <form id="digits" method="post" >
+    <input id="lcd" name="lcd" type="text" autofocus>  
+
+        
+    
+
+    <table id="calculator">
+       
+        <tr>
+            <td>
+            
+                <input onclick="keyPress('1')";
+                " type="button" value="1" name="1" id="1">
+                    <div class="contain"> 
+                            <span id="key2">(</span>
+                    </div>
+            </td>
+
+            <td>
+                <input type="button" value="2" id="2" onclick="keyPress('2')">
+                    <div class="contain"> 
+                         <span id="key2">)</span>
+                    </div>
+            </td>
+
+            <td>
+                <input onclick="keyPress('3')" type="button" id="3" value="3">
+                    <div class="contain"> 
+                         <span id="key2">%</span>
+                    </div>
+            
+            </td>
+           
+            <td>
+                <input class="cmd" type="reset" value="CLS" name="cls" id="cls">
+                    
+            </td>
+        
+        </tr>
+
+        <tr>
+
+            <td>
+                <input type="button" value="4" name="4" id="4" onclick="keyPress('4')">
+                    <div class="contain"> 
+                         <span id="key2">[</span>
+                    </div>  
+            </td>
+        <td>
+            <input type="button" value="5" id="5" onclick="keyPress('5')"> 
+                    <div class="contain"> 
+                         <span id="key2">]</span>
+                    </div>
+        </td>
+
+        <td>
+            <input type="button" value="6" id="6" onclick="keyPress('6')"> 
+                    <div class="contain"> 
+                         <span id="key2">$</span>
+                    </div>
+        </td>
+        
+        <td>
+            <input class="cmd" type="button" value="x" id="X" onclick="keyPress('*')">
+                   
+        </td>
+
+        </tr>
+
+        <tr>
+        <td>
+            <input type="button" value="7" id="7"  onclick="keyPress('7')">
+
+            <div class="contain"> 
+                         <span id="key2"><</span>
+                    </div>
+        </td>
+
+        <td>
+            <input type="button" value="8" id="8" onclick="keyPress('8')">
+                    <div class="contain"> 
+                         <span id="key2">></span>
+                    </div>
+        </td>
+
+
+        <td>
+            <input type="button" value="9"  id="9" onclick="keyPress('9')">
+                    <div class="contain"> 
+                         <span id="key2">^</span>
+                    </div> 
+        </td>
+
+        <td><input class="cmd" type="button" value="/" name="/" id="/" onclick="keyPress('/')"> </td>
+
+        </tr>
+
+        <tr>
+            <td>  <input type="button" value="0" name="0" id="0" onclick="keyPress('0')">  
+            </td>
+        
+                <td>  <input class="cmd" type="button" value="+"  onclick="keyPress('+')">  
+                </td>
+                <td> <input class="cmd" type="button" value="-"    onclick="keyPress('-')">  
+                </td>
+
+                <td><input class="equal" type="submit"  id="submit" value="=">  </td>
+              
+                <td><input class="shift" type="button"  value="Shift" onclick="shiftKey()">  </td>
+
+            </tr>
+
+
+        </tr>
+        <tr colspan="3">
+            
+        </tr>
+
+
+    
+
+ 
+       
+    </table>
+
+    </form>
+    </div>
+    </fieldset>
+
+
+
+
+
+<script>
+
+
+
+
+function keyPress(key){
+    lcd.value += key;
+}
+
+
+
+// Processing Result
+var submit = document.querySelector('#digits');
+var lcd = document.querySelector('#lcd');
+
+submit.addEventListener('submit', function(event){
+    event.preventDefault();
+    
+
+    var input = document.querySelector('#lcd').value;
+
+    let result = eval(input);
+
+    lcd.value= result; 
+
+
+
+})
+
+
+
+// SHIFT KEY
+
+
+
+
+
+
+
+</script>
+
+
+
+</body
+</html>
